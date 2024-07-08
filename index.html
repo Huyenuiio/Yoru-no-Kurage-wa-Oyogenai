@@ -1,0 +1,1099 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- custom css  -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">	
+    <title>Yoru no Kurage wa Oyogenai</title>
+    <link rel="icon" href="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163078-kIhCmQARcoOD.jpg" type="jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/8.0.0-beta.3/hls.min.js"></script>
+    <style>
+        /* Your CSS styles go here */
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+            text-transform: capitalize;
+            font-weight: normal;
+            font-family: 'Quicksand', sans-serif;
+        }
+        body {
+            background: #0f0f0f;
+            font-family: 'Quicksand', sans-serif;
+              /* Thay đổi con trỏ chuột khi di chuyển */
+              cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/video/yoru%20no%20kurage/cursor/cute-blue-jellyfish-cursor-_1_.cur'), auto;
+        }
+        body:hover {
+    /* Thay đổi con trỏ chuột khi di chuyển lên một phần tử */
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/video/yoru%20no%20kurage/cursor/cute-blue-jellyfish-cursor-_1_.cur'), auto;
+}
+body:active {
+    /* Thay đổi con trỏ chuột khi nhấp chuột */
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/video/yoru%20no%20kurage/cursor/cute-blue-jellyfish-cursor-_1_.cur'), auto;
+}
+a:hover {
+    cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/video/yoru%20no%20kurage/cursor/cute-blue-jellyfish-cursor-_1_.cur'), auto;
+}
+
+
+
+
+
+
+
+        .heading {
+            color: #728197;
+            font-size: 40px;
+            text-align: center;
+            padding: 10px;  
+            font-weight: 700;
+             
+        }
+     
+ 
+        .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+            align-items: flex-start;
+            padding: 5px 5%;
+        }
+        .container .main-video {
+            background: #1a1a1a;
+            border-radius: 5px;
+            padding: 10px;
+          
+        }
+        .container .main-video .video .iframe {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            height: 431px; 
+            border:none; 
+            
+        }
+        .container .main-video .title {
+            background: rgb(33 33 33);
+            color: rgb(255, 250, 250);
+            font-size: 23px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+        .container .playlist {
+            background: rgb(33 33 33);
+            border-radius: 5px;
+            height: 520px;
+            overflow-y: scroll;
+        }
+        .container .playlist::-webkit-scrollbar {
+            width: 7px;
+        }
+        .container .playlist::-webkit-scrollbar-track {
+            background: #ccc;
+            border-radius: 50px; 
+        }
+        .container .playlist::-webkit-scrollbar-thumb {
+            background: #666;
+            border-radius: 50px; 
+        }
+        .container .playlist .vid {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0,0,0,.1);
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid rgba(0,0,0,.1);
+            cursor: pointer;
+        }
+        .container .playlist .vid:hover{
+            background: rgb(39 39 39);
+            cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/video/yoru%20no%20kurage/cursor/cute-blue-jellyfish-pointer.cur'), auto;
+            border: 1px solid white;
+        }
+        .container .playlist .vid:hover .title{
+            color: #3db4d0;
+        }
+        .container .playlist .vid.active{
+            background: rgb(26 35 49);
+            border: 1px solid white;
+        }
+        .container .playlist .vid.active .title{
+            color: #5eead4;
+            font-weight: 700;
+        }
+        .container .playlist .vid .title{
+            color: hsla(0,0%,100%,.5);
+            font-size: 17px;
+        }
+        @media (max-width:991px){   
+            .container {
+                grid-template-columns: 1.5fr 1fr;
+                padding: 10px;
+            }}
+        @media (max-width:768px){
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 1540px){
+.media-page-unscoped .content .grid-wrap {
+    grid-template-columns: repeat(2, 1fr);
+}}
+@media (max-width: 1040px){
+.media-page-unscoped .content .grid-wrap {
+    grid-template-columns: repeat(1, 1fr);
+}
+}
+        .container .playlist .vid img{
+    width: 100px;
+    border-radius: 5px;
+    position: 50%;
+    grid-area: image;
+    size: cover;
+    
+}
+
+
+ .playlist .vid iframe{
+    display: none;
+ }
+/* ------------------------------------------------hieu-ung-chuyen-dong-luot-len-luot-xuong---------------------------------------------------------------------- */
+
+.container, .video-list, .heading {
+    /* Thời gian chuyển đổi */
+    transition: all 0.5s ease-in-out;
+}
+
+.container:hover, .video-list:hover, .heading:hover {
+    /* Hiệu ứng lướt lên */
+    transform: translateY(-10px);
+}
+
+.container:active, .video-list:active, .heading:active {
+    /* Hiệu ứng lướt xuống */
+    transform: translateY(10px);
+}
+/* _____________________________________________________________________________________________________________________________ */
+
+/* phần gird */
+.media-page-unscoped .content .grid-wrap {
+    display: grid;
+    grid-column-gap: 30px;
+    grid-row-gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.container .grid-wrap {
+
+
+     
+    display: grid;
+    grid-column-gap: 30px;
+    grid-row-gap: 15px;
+    
+}
+
+
+
+
+
+.container h2 {
+    margin-bottom: 10px;
+}
+h2 {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+h1, h2 {
+    color: #fffafa;
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+.media-preview-card[data-v-6dc78144] {
+    background: #9fadbd;
+    border-radius: 3px;
+    display: inline-grid;
+    grid-template-columns: 85px auto;
+    height: 115px;
+    max-height: 115px;
+}
+
+.cover[data-v-6dc78144] {
+background-position: 50%;
+background-repeat: no-repeat;
+background-size: cover;
+border-radius: 3px 0 0 3px;
+}
+
+a:visited {
+    color: inherit;
+}
+
+/* a:hover{
+    border: 1px solid white;                                                       //hover thẻ a
+} */
+
+[lazy=error], [lazy=loaded] {
+    opacity: 1 !important;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+    transition: .15s;
+    outline: 0;
+    background-color: transparent;
+}
+.cover .image-overlay[data-v-6dc78144], .cover .image-text[data-v-6dc78144] {
+    display: none;
+}
+/* trên là phần thẻ a */
+/* dưới là kế bên thẻ a */
+.content[data-v-6dc78144] {
+    background-color: rgb(33 33 33);
+    border-radius: 0 3px 3px 0;
+    padding: 12px;
+    position: relative;
+}
+.content[data-v-6dc78144]:hover{
+    border:1px solid white;
+}
+
+.info-header[data-v-6dc78144]{
+    color: #3DB4F2;
+    /* font-size: 1.2rem; */
+    font-size: 14px;
+    font-weight: 500;
+    /* margin-bottom: 8px; */
+}
+/* tới phần title */
+
+.title[data-v-6dc78144] {
+    display: -webkit-box;
+    font-size: 1.4rem;
+    overflow: hidden;
+    word-break: break-word;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    color: #9fadbd;
+    font-weight: 700;
+    /* margin-bottom: 10px; */
+}
+
+.info[data-v-6dc78144] {
+    bottom: 12px;
+    /* color: rgb(133, 150, 165); */
+    color: #8596A5;
+    font-size: 1.2rem;
+    left: 12px;
+    position: absolute;
+}
+
+.artplayer-app {
+     /* z-index: 10;
+    cursor: pointer; */
+     /* width: 853px; */
+    height: 480px; 
+    /* inset: 0;  */
+     position: relative;   
+     
+    } 
+ 
+    .art-video:hover{
+        cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/video/yoru%20no%20kurage/cursor/cute-blue-jellyfish-pointer.cur'), auto;
+    }
+   .art-video:active{
+        cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/video/yoru%20no%20kurage/cursor/cute-blue-jellyfish-pointer.cur'), auto;
+    }
+
+    /*   hiệu ứng loading*/
+    #loading{
+        width: 100%;
+    height: 100%;
+    background: #fff;
+    background: #181a1b;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow: hidden;
+    }
+
+
+#loading .logo {
+    /* width: 600px; */
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+    opacity: 0;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}  
+
+
+
+#custom-alert {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#custom-alert-content {
+    /* background: white; */
+    /* padding: 20px; */
+    /* border-radius: 5px; */
+    background: back;
+    padding: 36px;
+    border-radius: 5px;
+    font-size: 23px;
+    font-weight: 700;
+    color: white;
+}
+
+#custom-alert-close {
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+#custom-alert-close:hover {
+        background-color: #3db4d0;
+        color: white;
+        cursor: url('https://github.com/Huyenuiio/Data-src/raw/main/video/yoru%20no%20kurage/cursor/cute-blue-jellyfish-pointer.cur'), auto;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- <h3 class="heading">Yoru no Kurage wa Oyogenai</h3> -->
+    <header class="heading">
+        <h1>
+            <a href="#">
+                <img src="https://yorukura-anime.com/assets/images/common/logo.png" alt="夜のクラゲは泳げない" style="filter: invert(0);">
+        </a>
+            
+        
+        </h1>
+    </header>
+    <div class="container media-page-unscoped ">
+        <div class="main-video">
+            <div class="artplayer-app" >
+            <div class="video">
+                <iframe class="iframe" id="mainVideo" src="" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+             
+            </div>
+        </div>
+        <h3 class="title" id="mainTitle">Yoru no Kurage wa Oyogenai</h3>
+    </div>
+        <div class="playlist">
+            <!-- Thêm các video vào playlist ở đây -->
+            <div class="vid " data-src="#" data-title="Mahiru Kouzuki,光月まひる, Yoru (ヨル)">
+                <!-- iframe và hình ảnh của video -->
+                <img class="img" src="https://s4.anilist.co/file/anilistcdn/character/large/b323821-iJcXLuaa4uoa.png" alt="Mahiru Kouzuki,光月まひる, Yoru (ヨル)">
+                <div class="birthday" style="display: none;">Unknow</div>
+                <div class="age" style="display: none;">17</div>
+                <div class="gender" style="display: none;">Nữ giới</div>
+                <div class="height" style="display: none;">Unknow</div>
+                <div class="abilities" style="display: none;">Mahiru là một nữ sinh trung học điển hình tuân theo triết lý "không có gì quan trọng". Mặc dù nhạy cảm nhưng cô ấy thường khó chịu vì những điều nhỏ nhặt, mặc dù cô ấy thực sự quan tâm đến người khác.
+
+                    Khi còn trẻ, Mahiru thường vẽ tranh minh họa với bút danh "Kurage Yoru". Tuy nhiên, có một chuyện xảy ra khiến cô phải dừng lại một thời gian. Bây giờ, cô ấy đấu tranh với cảm giác khác biệt và cố gắng hòa nhập với mọi người.
+                    
+                    Nhưng sau đó, cô gặp Kano và mọi thứ thay đổi. Kano giúp cô hiểu rằng việc trở nên độc đáo cũng không sao, và cuộc sống của Mahiru bắt đầu trở nên đặc biệt trở lại.</div>
+                <h3 class="title">Mahiru Kouzuki</h3>
+                <!-- Thêm thông tin khác nếu cần -->
+            </div>
+        
+            <!-- Lặp lại quá trình này cho mỗi video trong playlist -->
+            <div class="vid " data-src="#" data-title="Kano Yamanouchi,山ノ内花音, Nonoka Tachibana (橘ののか)">
+                <!-- iframe và hình ảnh của video -->
+                <img class="img" src="https://s4.anilist.co/file/anilistcdn/character/large/b323822-b9pmjVcWjemp.png" alt="Mahiru Kouzuki,山ノ内花音, Nonoka Tachibana (橘ののか)">
+                <div class="birthday" style="display: none;">Unknow</div>
+                <div class="age" style="display: none;">12-17</div>
+                <div class="gender" style="display: none;">Nữ giới</div>
+                <div class="height" style="display: none;">Unknow</div>
+                <div class="abilities" style="display: none;">Gặp Kano, một cựu thần tượng quyết tâm đạt được ước mơ của mình! Cô ấy là một người có ý chí mạnh mẽ, biết mình muốn gì và không dễ bị người khác lay chuyển.
+
+                    Kano từng là thành viên của nhóm nhạc thần tượng "Sunflower Dolls", nơi cô biểu diễn với cái tên "Nonoka Tachibana". Tuy nhiên, cô quyết định rời nhóm sau một cuộc tranh cãi và bắt tay vào hành trình khám phá thiên chức thực sự của mình.
+                    
+                    Trong cuộc hành trình của mình, Kano gặp Yoru Umitsuki, một nghệ sĩ đã tạo ra bức tranh tường về sứa tuyệt đẹp, truyền cảm hứng cho cô nhìn cuộc sống theo một cách mới. Cuộc gặp gỡ này trở thành bước ngoặt đối với Kano khi cô xác định lại giá trị của mình và khám phá những khả năng mới theo cách độc đáo của riêng mình.</div>
+                <h3 class="title">Kano Yamanouchi</h3>
+                <!-- Thêm thông tin khác nếu cần -->
+            </div>
+             <!-- Lặp lại quá trình này cho mỗi video trong playlist -->
+             <div class="vid " data-src="#" data-title="Kiui Watase,渡瀬キウイ">
+                <!-- iframe và hình ảnh của video -->
+                <img class="img" src="https://s4.anilist.co/file/anilistcdn/character/large/b323823-YVsvmI48ta2x.png" alt="Kiui Watase,渡瀬キウイ">
+                <div class="birthday" style="display: none;">Unknow</div>
+                <div class="age" style="display: none;">12-17</div>
+                <div class="gender" style="display: none;">Nữ giới</div>
+                <div class="height" style="display: none;">Unknow</div>
+                <div class="abilities" style="display: none;">Kiui và Mahiru là bạn từ nhỏ. Hoạt động dưới danh tính Vtuber "Nox Ryugasaki", Kiui luôn đề cao niềm tin của mình rằng mình là cá nhân mạnh nhất. Cô ấy rất thành thạo trong việc nhanh chóng hoàn thành bất kỳ nhiệm vụ nào và tất cả các kỹ năng mà cô ấy thể hiện với tư cách là một Vtuber đều là của riêng cô ấy.
+
+                    Tuy nhiên, những khác biệt này đã khiến cô cảm thấy có phần lạc lõng so với các bạn cùng lứa. Mahiru là người duy nhất mà Kiui cảm thấy thoải mái khi thảo luận về quá khứ mà không hề dè dặt, và cô ấy luôn sẵn lòng giúp đỡ người bạn thân yêu của mình.</div>
+                <h3 class="title">Kiui Watase</h3>
+                <!-- Thêm thông tin khác nếu cần -->
+            </div>
+             <!-- Lặp lại quá trình này cho mỗi video trong playlist -->
+             <div class="vid " data-src="#" data-title="Mei Kim Anouk Takanashi,高梨・キム・アヌーク・めい, Kimura (木村)">
+                <!-- iframe và hình ảnh của video -->
+                <img class="img" src="https://s4.anilist.co/file/anilistcdn/character/large/b323824-Sbw1HiIuYegf.png" alt="Mei Kim Anouk Takanashi,高梨・キム・アヌーク・めい, Kimura (木村)">
+                <div class="birthday" style="display: none;">Unknow</div>
+                <div class="age" style="display: none;">12-17</div>
+                <div class="gender" style="display: none;">Nữ giới</div>
+                <div class="height" style="display: none;">Unknow</div>
+                <div class="abilities" style="display: none;">Mei theo học tại một trường trung học trực thuộc nhạc viện.
+
+                    Cô bắt đầu học âm nhạc từ khi còn trẻ và đã giành được nhiều giải thưởng trong các cuộc thi, thể hiện tài năng đặc biệt của mình. Mặc dù có nguồn gốc lai từ Đức, nhưng thái độ và vẻ ngoài dè dặt của Mei thường khiến cô dành thời gian một mình, giữ khoảng cách với người khác.
+                    
+                    Tuy nhiên, tình cờ, cô lại trở thành fan cuồng nhiệt của Nonoka Tachibana và theo đuổi hoạt động của cô một cách say mê cho đến cùng. Cảm thấy lạc lõng sau khi thần tượng yêu thích của mình nghỉ hưu, Mei bắt đầu có nhiều cảm xúc lẫn lộn khi gặp Kano, người luôn sống thật với chính mình.</div>
+                <h3 class="title">Mei Kim Anouk Takanashi</h3>
+                <!-- Thêm thông tin khác nếu cần -->
+            </div>
+             <!-- Lặp lại quá trình này cho mỗi video trong playlist -->
+             <div class="vid " data-src="#" data-title="Miiko,みー子">
+                <!-- iframe và hình ảnh của video -->
+                <img class="img" src="https://s4.anilist.co/file/anilistcdn/character/large/b326377-ycK77vBFLahU.png" alt="Miiko,みー子">
+                <div class="birthday" style="display: none;">Unknow</div>
+                <div class="age" style="display: none;">17 uh à chắn chắn là 17 và mãi mãi là 17</div>
+                <div class="gender" style="display: none;">Nữ giới</div>
+                <div class="height" style="display: none;">Unknow</div>
+                <div class="abilities" style="display: none;">Một thần tượng tự nhận mình mãi mãi 17 tuổi và mạnh nhất thiên hà. Cô đã hoạt động trong một thời gian dài và luôn tràn đầy động lực và sự kiên trì.</div>
+                <h3 class="title">Miiko</h3>
+                <!-- Thêm thông tin khác nếu cần -->
+            </div>
+             <!-- Lặp lại quá trình này cho mỗi video trong playlist -->
+             <div class="vid " data-src="#" data-title="Melo Setou,瀬藤メロ">
+                <!-- iframe và hình ảnh của video -->
+                <img class="img" src="https://s4.anilist.co/file/anilistcdn/character/large/b326378-zt5XZqDRQXEj.png" alt="Melo Setou,瀬藤メロ">
+                <div class="birthday" style="display: none;">Unknow</div>
+                <div class="age" style="display: none;">12-17</div>
+                <div class="gender" style="display: none;">Nữ giới</div>
+                <div class="height" style="display: none;">Unknow</div>
+                <div class="abilities" style="display: none;">Unknow</div>
+                <h3 class="title">Melo Setou</h3>
+                <!-- Thêm thông tin khác nếu cần -->
+            </div>
+            
+           
+            
+
+
+
+        </div>
+
+        <!-- <div class="relations">
+            <h2>Relations</h2> 
+        <div class="grid-wrap">
+<div     data-v-6dc78144           class="media-preview-card">
+            <a    data-v-6dc78144       class="cover"    data-src="#"   lazy="loaded"        style="background-image: url(https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx15927-QtnfcEJ6epUZ.jpg);"   href="#" >
+    
+           <div       data-v-6dc78144 class="image-text">
+            <div    data-v-4650c4e0 >Câu chuyện bên lề</div>
+           </div>
+        
+
+            </a>
+            <div data-v-6dc78144   class="content">
+                <div data-v-6dc78144 class="info-header">                       
+
+                        <div   data-v-4650c4e0   data-v-6dc78144 >Câu chuyện bên lề</div>
+                </div>
+                    <a data-v-6dc78144   href="#"  class="title">Carnival Phantasm: HibiChika Special</a>
+                <div data-v-6dc78144 class="info">Special · Hoàn thành</div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+        </div>
+    </div> -->
+</div>
+
+
+    <div id="loading">
+        <div class="logo load"><img src="https://yorukura-anime.com/assets/images/common/logo.png" alt="夜のクラゲは泳げない" style="filter: invert(0);"></div>
+    </div>
+
+
+
+
+
+    <div id="custom-alert" style="display: none;">
+        <div id="custom-alert-content"></div>
+        <button id="custom-alert-close">Đóng</button>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js"></script>
+
+    <!-- Liên kết với Artplayer từ CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.min.js"></script>
+    <!-- Liên kết với Artplayer Playlist từ CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/artplayer-playlist/dist/artplayer-plugin-playlist.min.js"></script>
+
+
+
+
+
+
+<script>
+function showAlert(message) {
+    document.getElementById('custom-alert-content').textContent = message;
+    document.getElementById('custom-alert').style.display = 'flex';
+}
+
+document.getElementById('custom-alert-close').addEventListener('click', function() {
+    document.getElementById('custom-alert').style.display = 'none';
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const playlistItems = document.querySelectorAll(".vid");
+
+    playlistItems.forEach((item) => {
+        item.addEventListener("click", function () {
+            const title = item.getAttribute("data-title");
+            // Lấy thông tin khác từ phần tử playlist (nếu cần)
+            const birthday = item.querySelector(".birthday").textContent;
+            const age = item.querySelector(".age").textContent;
+            const gender = item.querySelector(".gender").textContent;
+            const height = item.querySelector(".height").textContent;
+            const abilities = item.querySelector(".abilities").textContent;
+
+            // Hiển thị thông tin
+            showAlert(`Thông tin nhân vật: ${title}\n- Ngày sinh: ${birthday}\n- Tuổi: ${age}\n- Giới tính: ${gender}\n- Chiều cao: ${height}\n- Câu Chuyện: ${abilities}`);
+       
+       
+       
+        });
+    });
+});
+
+
+
+
+
+
+// // Tạo một hàm để ẩn phần loading
+// function hideLoading() {
+//     const loadingElement = document.getElementById('loading');
+//     if (loadingElement) {
+//         loadingElement.style.display = 'none';
+//     }
+// }
+
+// // Gọi hàm hideLoading khi trang web tải xong
+// window.addEventListener('load', hideLoading);
+
+
+// Đợi cho tất cả tài nguyên (hình ảnh, font chữ, ...) tải xong
+window.addEventListener('load', function() {
+ 
+    // Lấy phần tử logo
+    const logoElement = document.querySelector('#loading .logo');
+
+    // const logooElement = document.querySelector();
+
+    // Ẩn phần loading sau một khoảng thời gian (ví dụ: 0,5 giây)
+    setTimeout(function() {
+        // Ẩn phần loading
+        // if (loadingElement) {
+        //     loadingElement.style.display = 'none';
+
+        // }
+
+        // Hiển thị logo (nếu muốn) với hiệu ứng mượt mà
+        if (logoElement) {
+            logoElement.style.opacity = 1;
+            logoElement.style.filter = 'blur(0)'; // Bỏ hiệu ứng blur
+            // logoElement.style.transition = 'opacity 0.5s ease'; // Thêm transition
+        }
+
+
+
+
+    }, 500); // Thời gian chờ (0,5 giây)
+
+
+});
+
+
+// Đợi cho tất cả tài nguyên (hình ảnh, font chữ, ...) tải xong
+window.addEventListener('load', function() {
+    // Lấy phần tử logo
+    const logoElement = document.querySelector('#loading .logo');
+
+    // const logooElement = document.querySelector();
+
+    // Ẩn phần loading sau một khoảng thời gian (ví dụ: 1,5 giây)
+    setTimeout(function() {
+        // Ẩn phần loading
+        // if (loadingElement) {
+        //     loadingElement.style.display = 'none';
+
+        // }
+
+        // Hiển thị logo (nếu muốn) với hiệu ứng mượt mà
+        if (logoElement) {
+            logoElement.style.opacity = 0;
+            // logoElement.style.transition = 'opacity 0.5s ease'; // Thêm transition
+            logoElement.style.transition = ' all 1s ease;'; // Thêm transition
+        }
+
+
+
+    }, 1500); // Thời gian chờ (1,5 giây)
+
+
+});
+
+
+
+
+// Đợi cho tất cả tài nguyên (hình ảnh, font chữ, ...) tải xong
+window.addEventListener('load', function() {
+    // Lấy phần tử loading
+    const loadingElement = document.getElementById('loading');
+
+    
+
+    // Ẩn phần loading sau một khoảng thời gian (ví dụ: 2 giây)
+    setTimeout(function() {
+        // Ẩn phần loading
+        if (loadingElement) {
+            loadingElement.style.display = 'none';
+
+        }
+
+       
+
+    }, 2000); // Thời gian chờ (2 giây)
+
+
+});
+
+
+
+
+// npm i hls.js
+// import Hls from 'hls.js';
+Artplayer.CONTEXTMENU = false;
+function playM3u8(video, url, art) {
+    if (Hls.isSupported()) {
+        if (art.hls) art.hls.destroy();
+        const hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        art.hls = hls;
+        art.on('destroy', () => hls.destroy());
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = url;
+    } else {
+        art.notice.show = 'Unsupported playback format: m3u8';
+    }
+}
+
+
+
+
+
+
+
+
+
+var art = new Artplayer({
+    container: '.artplayer-app',
+    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap1/output.m3u8',
+    type: 'm3u8',
+    title: 'Ep.1 ...',
+    poster: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/image/mainimg5.webp',
+    volume: 0.5,
+    isLive: false,                  //Sử dụng chế độ trực tiếp, chế độ này sẽ ẩn thanh tiến trình và thời gian phát lại
+    muted: false,
+    autoplay: true,
+    pip: true,           //Mặc định: falseHiển thị Picture in Picturenút chuyển đổi trên thanh điều khiển phía dưới                                           
+    autoSize: false,       //Kích thước của trình phát theo mặc định sẽ lấp đầy toàn bộ container, thường dẫn đến các thanh màu đen. Giá trị này có thể tự động điều chỉnh kích thước trình phát để ẩn các thanh màu đen, tương tự như css'sobject-fit: cover;
+    autoMini: true,     //Tự động nhập mini modekhi người chơi cuộn ra khỏi khung nhìn của trình duyệt
+    screenshot: true,      //Có hiển thị nút chụp ảnh màn hình hay không thì nó sẽ xuất hiện ở chức năng toolbarvà context menuDisplay Screenshotở thanh điều khiển phía dưới
+    setting: true,
+    loop: false,
+    flip: true,           //Có hiển thị tính năng lật video hay không, hiện chỉ khả dụng trong Settings PanelvàContext Menu
+    playbackRate: true,    //Có hiển thị tính năng tốc độ phát lại của video hay không, nó sẽ xuất hiện trong Settings PanelvàContext Menu
+    aspectRatio: true,     //Hiển thị tính năng tỷ lệ khung hình của video, nó sẽ xuất hiện trong Settings PanelvàContext Menu
+    fullscreen: true,
+    fullscreenWeb: false,
+    subtitleOffset: true,  //Độ lệch thời gian phụ đề, phạm vi là [-5s, 5s], xuất hiện trongSettings panel
+    miniProgressBar: true,      //Thanh tiến trình nhỏ, chỉ xuất hiện khi người chơi mất tập trung và đang chơi
+    mutex: false,            //Nếu có nhiều người chơi trên trang, thì chỉ nên cho phép một người chơi chơi cùng một lúc
+    backdrop: true,
+    playsInline: true,
+    autoPlayback: true,
+    airplay: true,          //Có hiển thị airplaynút hay không, hiện tại chỉ một số trình duyệt hỗ trợ tính năng này
+    lock: true,             //Có nên hiển thị lock buttontrên thiết bị di động để ẩn phần dưới khôngcontrol bar
+    fastForward: true,          //Có nên thêm chức năng tua nhanh bằng cách nhấn lâu vào video trên thiết bị di động không
+    autoOrientation: true,          //Có xoay trình phát trên các trang web di động ở chế độ toàn màn hình hay không tùy theo kích thước video và kích thước khung nhìn
+    hotkey: true,
+    theme: '#23ade5',
+    lang: navigator.language.toLowerCase(),
+    moreVideoAttr: {
+        crossOrigin: 'anonymous',
+    },
+    settings: [
+        {
+            width: 200,
+            html: 'Subtitle',
+            tooltip: 'Tập 1 - Sứa về đêm',
+            icon: '<img width="22" heigth="22" src="https://github.com/zhw2590582/ArtPlayer/raw/master/docs/assets/img/subtitle.svg">',
+            selector: [
+                {
+                    html: 'Display',
+                    tooltip: 'Show',
+                    switch: true,
+                    onSwitch: function (item) {
+                        item.tooltip = item.switch ? 'Hide' : 'Show';
+                        art.subtitle.show = !item.switch;
+                        return !item.switch;
+                    },
+                },
+                {
+                    default: true,
+                    html: 'Tập 1 - Sứa về đêm',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap1/%5BSubtitleTools.com%5D%20%5BErai-raws%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2001%20%5B480p%5D%5B26196FA3%5D.srt',
+                },
+                {
+                    html: 'Tập 2 - Mei Fangirl',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap2/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2002%20(480p)%20%5B158A822E%5D.srt',
+                },
+                {
+                    html: 'Tập 3 - Watase Kiui',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap3/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2003%20(480p)%20%5BA80CD5B1%5D.srt',
+                },
+                {
+                    html: 'Tập 4 - Double A-side',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap4/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2004%20(480p)%20%5B985E0A92%5D.srt',
+                },
+                {
+                    html: 'Tập 5 - Phần bình luận',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap5/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2005%20(480p)%20%5BCF32F9B8%5D.srt',
+                },
+                {
+                    html: 'Tập 6 - 31 (Ba mươi mốt)',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep6/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2006%20(480p)%20%5B3C582EFE%5D.srt',
+                },
+                  {
+                    html: 'Tập 7 - Bình minh',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep7/%5BSubtitleTools.com%5D%20%5BErai-raws%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2007v0%20%5B480p%5D%5BMultiple%20Subtitle%5D%5BA7DFF384%5D.srt',
+                },
+                {
+                    html: 'Tập 8 - Covert Gig',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep8/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2008%20(480p)%20%5BB0F32942%5D.srt',
+                },
+                 {
+                    html: 'Tập 9 - Nhìn vào thực tế đi',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep9/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2009%20(480p)%20%5B11F47E0A%5D.srt',
+                },
+                {
+                    html: 'Tập 10',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep10/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2010%20(480p)%20%5BFE6F9F0F%5D.srt',
+                },
+                {
+                    html: 'Tập 11',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep11/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2011%20(480p)%20%5B290B083B%5D.srt',
+                },
+                {
+                    html: 'Tập 12',
+                    url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep12/%5BSubtitleTools.com%5D%20%5BSubsPlease%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2012%20(480p)%20%5BD82B7F30%5D.srt',
+                },
+                
+                
+            ],
+            onSelect: function (item) {
+                art.subtitle.switch(item.url, {
+                    name: item.html,
+                });
+                return item.html;
+            },
+        },
+        {
+            html: 'Switcher',
+            icon: '<img width="22" heigth="22" src="https://github.com/zhw2590582/ArtPlayer/raw/master/docs/assets/img/state.svg">',
+            tooltip: 'OFF',
+            switch: false,
+            onSwitch: function (item) {
+                item.tooltip = item.switch ? 'OFF' : 'ON';
+                console.info('You clicked on the custom switch', item.switch);
+                return !item.switch;
+            },
+        },
+        {
+            html: 'Slider',
+            icon: '<img width="22" heigth="22" src="https://github.com/zhw2590582/ArtPlayer/raw/master/docs/assets/img/state.svg">',
+            tooltip: '5x',
+            range: [5, 1, 10, 0.1],
+            onRange: function (item) {
+                return item.range + 'x';
+            },
+        },
+    ],
+    // contextmenu: [
+    //     {
+    //         html: 'Custom menu',
+    //         click: function (contextmenu) {
+    //             console.info('You clicked on the custom menu');
+    //             contextmenu.show = false;
+    //         },
+    //     },
+    // ],
+    
+    contextmenu: [
+        {
+            name: 'your-menu',
+            html: 'Your Menu',
+            click: function (...args) {
+                console.info(args);
+                art.contextmenu.show = false;
+            },
+        },
+    ],
+
+
+
+
+
+
+
+    // layers: [
+    //     {
+    //         html: '<img width="100" src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163078-kIhCmQARcoOD.jpg">',
+    //         click: function () {
+    //             window.open('https://aimu.app');
+    //             console.info('You clicked on the custom layer');
+    //         },
+    //         style: {
+    //             position: 'absolute',
+    //             top: '20px',
+    //             right: '20px',
+    //             opacity: '.9',
+    //         },
+    //     },
+    // ],
+    // quality: [
+    //     {
+    //         default: true,
+    //         html: 'SD 480P',
+    //         url: 'https://content.jwplatform.com/videos/jHthNm6G-640.mp4',
+    //     },
+    //     {
+    //         html: 'HD 720P',
+    //         url: 'https://content.jwplatform.com/videos/jHthNm6G-1280.mp4',
+    //     },
+    //     {
+    //         html: 'FHD 1080P',
+    //         url: 'https://content.jwplatform.com/videos/jHthNm6G-1920.mp4',
+    //     },
+
+    // ],
+
+    thumbnails: {
+        url: '#',
+        number: 60,
+        column: 10,
+    },
+    subtitle: {
+        url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap1/%5BSubtitleTools.com%5D%20%5BErai-raws%5D%20Yoru%20no%20Kurage%20wa%20Oyogenai%20-%2001%20%5B480p%5D%5B26196FA3%5D.srt',
+        type: 'srt',
+        style: {
+            color: 'white',
+            // fontSize: '30px',
+             //fontSize: '40px',
+             fontSize: '48px',
+            //  fontWeight: '700', // In đậm
+             
+             
+           
+        },
+        encoding: 'utf-8',
+    },
+    highlight: [
+        {
+            time: 29,
+            text: 'Opening',
+        },
+        {
+            time: 117,
+            text: 'Opening',
+        },
+        {
+            time: 1345,
+            text: 'Ending',
+        },
+        // {
+        //     time: 60,
+        //     text: 'こんなとこにあるはずもないのに',
+        // },
+        // {
+        //     time: 75,
+        //     text: '终わり',
+        // },
+    ],
+    // controls: [
+    //     {
+    //         position: 'right',
+    //         html: 'Control',
+    //         index: 1,
+    //         tooltip: 'Control Tooltip',
+    //         style: {
+    //             marginRight: '20px',
+    //         },
+    //         click: function () {
+    //             console.info('You clicked on the custom control');
+    //         },
+    //     },
+    // ],
+    icons: {
+        loading: '<img src="https://raw.githubusercontent.com/Huyenuiio/Data-src/main/image/ploading.gif">',
+        state: '<img width="150" heigth="150" src="https://github.com/zhw2590582/ArtPlayer/raw/master/docs/assets/img/state.svg">',
+        indicator: '<img width="16" heigth="16" src="https://github.com/zhw2590582/ArtPlayer/raw/master/docs/assets/img/indicator.svg">',
+    },
+
+    plugins: [artplayerPlaylist({
+        rebuildPlayer: false,
+        onchanged: (art) => {
+            console.log('Video Changed');
+        },
+        autoNext: true,
+        showText: false,
+        playlist: [
+            {
+                title: 'Tập 1 - Sứa về đêm',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap1/output.m3u8',
+               
+               
+            },
+            
+            {
+                title: 'Tập 2 - Mei Fangirl',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap2/outputt.m3u8',
+    
+            
+            },
+            {
+                title: 'Tập 3 - Watase Kiui',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap3/outputt.m3u8'
+            },
+            {
+                title: 'Tập 4 - Double A-side',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap4/outputt.m3u8'
+              
+            },
+            {
+                title: 'Tập 5 - Phần bình luận',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/tap5/outputt.m3u8'
+            },
+            {
+                title: 'Tập 6 - 31 (Ba mươi mốt)',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep6/outputt.m3u8'
+            },
+               {
+                title: 'Tập 7 - Bình minh',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep7/outputt.m3u8'
+            },
+            {
+                title: 'Tập 8 - Covert Gig',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep8/output.m3u8'
+            },
+            {
+                title: 'Tập 9 - Nhìn vào thực tế đi',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep9/output.m3u8'
+            },
+            {
+                title: 'Tập 10',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep10/output.m3u8'
+            },
+            {
+                title: 'Tập 11',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep11/output.m3u8'
+            },
+            {
+                title: 'Tập 12',
+                url: 'https://raw.githubusercontent.com/Huyenuiio/Data-src/main/video/yoru%20no%20kurage/ep12/output.m3u8'
+            },
+        ]
+    })],
+    customType: {
+        m3u8: playM3u8,
+    },
+});
+
+art.on('ready', () => {
+    console.info(art.hls);
+});
+
+
+
+// Danh sách các video trong playlist
+var playlist = document.querySelectorAll('.playlist .vid');
+
+// Lặp qua từng video trong playlist
+for (let i = 0; i < playlist.length; i++) {
+    // Thêm sự kiện click cho mỗi video
+    playlist[i].addEventListener('click', function() {
+        // Xóa class 'active' khỏi tất cả các video
+        for (let j = 0; j < playlist.length; j++) {
+            playlist[j].classList.remove('active');
+        }
+
+        // Thêm class 'active' cho video được chọn
+        this.classList.add('active');
+
+    });
+}
+
+
+
+
+    </script>
+</body>
+</html>
